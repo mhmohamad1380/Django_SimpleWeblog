@@ -12,4 +12,6 @@ after Cloning the Code, use the Code below in the Code Directory to Run Project 
 C:/example_folder/Django_SimpleWeblog/docker-compose up --build
 ```
 
+### USERNAME: admin , PASSWORD: admin
+
 
