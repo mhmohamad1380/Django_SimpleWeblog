@@ -7,11 +7,12 @@
 ### Install
 First of All, Check if You have Installed Docker on Your System Before.
 after Cloning the Code, use the Code below in the Code Directory to Run Project using nginx, MariaDB and Django with Docker.
-the Project Runs on localhost:8080
+
 
 ```bash
 C:/example_folder/Django_SimpleWeblog/docker-compose up --build
 ```
+### the Project Runs on localhost:8080
 
 ### USERNAME: admin , PASSWORD: admin
 
