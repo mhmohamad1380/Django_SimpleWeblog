@@ -10,9 +10,8 @@ RUN pip install mysqlclient
 RUN pip install -r requirements.txt 
 RUN apk del gcc python3-dev musl-dev
 COPY . .
-# CMD while ! python3 manage.py sqlflush > /dev/null 2>&1 ; do sleep 1 ; done && \
 CMD python3 manage.py makemigrations --noinput && \
-    python3 manage.py migrate --noinput && \
+    while ! python3 manage.py migrate --noinput ; do sleep 1 ; done && \
     python3 manage.py collectstatic --noinput && \
     python3 manage.py createsuperuser --user admin --noinput --email test@test.com --noinput ; \
     gunicorn -b 0.0.0.0:8000 --env DJANGO_SETTINGS_MODULE=weblog.settings --workers=6 weblog.wsgi
