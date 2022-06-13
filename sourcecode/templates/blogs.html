@@ -1,0 +1,79 @@
+{% extends 'base/Main_Layout.html' %}
+{% block title %}
+    بلاگ
+{% endblock %}
+{% block content %}
+    <div class="top-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="img/logo.png" alt="" class="logo">
+                </div>
+                <div class="col-md-5">
+                    {% include 'blog_search.html' %}
+                </div>
+                <div class="col-md-5">
+                    <div class="index-h1">
+                        <h1>بهترین و متفاوت ترین مقالات خبری</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <center>
+        <p style="font-size: 16px;color: #444;">مقالات</p>
+    </center>
+    <hr>
+    <div class="container">
+        <div class="row">
+            {% for blog in blogs %}
+                <div  class="col-md-3">
+                    <a href="{{ blog.get_absolute_url }}">
+                        <div  class="post-content">
+                            <figure>
+                                <img src="{{ blog.image.url }}">
+                                <figcaption class="hover-fig">
+                                    <i class="fa fa-book"></i>
+                                </figcaption>
+                                <figcaption class="date-fig">
+                                    <span>{{ blog.date }}</span>
+                                    <i class="fa fa-date"></i>
+                                </figcaption>
+                            </figure>
+                            <h4 style="color:black">{{ blog.title }}</h4>
+                            <p>
+                                {{ blog.description|truncatechars:120 }}
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        <br>
+        <div class="pagin text-center">
+            {% if blogs.has_other_pages %}
+                <ul class="pagination">
+                    {% if blogs.has_previous %}
+                        <li><a href="?page={{ blogs.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in blogs.paginator.page_range %}
+                        {% if blogs.number == i %}
+                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if blogs.has_next %}
+                        <li><a href="?page={{ blogs.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+    <br><br>
+{% endblock %}

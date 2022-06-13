@@ -1,0 +1,9 @@
+asgiref
+pillow
+django
+django-render-partial
+gunicorn
+python-decouple
+django-storages
+boto3
+pytz

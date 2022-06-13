@@ -1,0 +1,13 @@
+{% load static %}
+
+<script type="text/javascript" src="{% static 'js/jquery.1.8.3.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/wow.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.particleground.js' %}"></script>
+<script>
+    jQuery("[data-toggle='tooltip']").tooltip();
+    jQuery('.footer').particleground({
+        dotColor: '#515151',
+        lineColor: '#515151'
+    });
+</script>

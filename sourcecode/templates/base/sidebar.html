@@ -1,0 +1,39 @@
+<div class="col-md-3">
+    <div class="sidebar">
+        <div class="sidebar-text">
+            <p>
+                {{ sidebar.description }}
+            </p>
+        </div>
+        <div class="sidebar-social">
+            <ul>
+                {% for item in social %}
+                <li>
+                    <a href="{{ item.link }}" class="{{ item.color }}"><i class="fa fa-send"></i>{{ item.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="category-sidebar">
+            <span><i class="fa fa-bookmark"></i>دسته بندی مطالب</span>
+            <ul>
+                {% for item in category %}
+                    <li><a href="/search?q={{ item.name }}">{{ item.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="category-sidebar ads-sidebar">
+            <span><i class="fa fa-slack"></i>تبلیغات</span>
+            <ul>
+                <li>
+                    <a href="#">
+                        <figure>
+                            <img src="img/ads/ads1.jpg" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

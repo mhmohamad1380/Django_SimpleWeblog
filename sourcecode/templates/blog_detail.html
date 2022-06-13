@@ -1,0 +1,77 @@
+{% extends 'base/Main_Layout.html' %}
+{% load render_partial %}
+{% block title %}
+    {{ blog.title }}
+{% endblock %}
+{% block content %}
+    <hr>
+    <center><a href="/">خانه</a> / <a href="/blogs">بلاگ</a> / {{ blog.title }}</center>
+    <hr>
+    <div class="container">
+        <div class="row">
+            {% render_partial 'sidebar' %}
+            <div class="col-md-9">
+                <div class="col-md-12">
+                    <div class="single-content">
+                        <div class="single-img">
+                            {% if blog.image.height > blog.image.width %}
+                                <img style="width: 60%;height: 40%" src="{{ blog.image.url }}">
+                                {% else %}
+                                <img style="width: 90%;height: 60%" src="{{ blog.image.url }}">
+                            {% endif %}
+                        </div>
+                        <div class="single-meta">
+                            <ul>
+                                <li><a href="#" title="{{ blog.date }}" data-toggle="tooltip"
+                                       data-original-title="{{ blog.date }}"><i
+                                        class="fa fa-calendar-o"></i></a></li>
+                                <li><a href="#" title="{{ blog.author.first_name }}{{ blog.author.last_name }}"
+                                       data-toggle="tooltip"
+                                       data-original-title="{{ blog.author.first_name }}{{ blog.author.last_name }}"><i
+                                        class="fa fa-user-o"></i></a></li>
+                                <li><a href="#" title="{{ category }}" data-toggle="tooltip"
+                                       data-original-title="{{ category }}"><i
+                                        class="fa fa-bars"></i></a></li>
+                                <li><a href="whatsapp://send?text={{ request.build_absolute_uri }}" title="" data-toggle="tooltip" data-original-title="اشتراک در واتس اپ"><i
+                                        class="fa fa-whatsapp"></i></a></li>
+                                <li><a href="http://www.facebook.com/sharer.php?u={{ request.build_absolute_uri }}" title="" data-toggle="tooltip"
+                                       data-original-title="اشتراک در فیس بوک"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://t.me/share/url?url={{ request.build_absolute_uri }}&text={{ blog.title }}" title="" data-toggle="tooltip"
+                                       data-original-title="اشتراک در تلگرام"><i class="fa fa-telegram"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="single-title">
+                            <h1>{{ blog.title }}</h1>
+                        </div>
+                        <p>{{ blog.description|linebreaks }}</p>
+                        <hr>
+                        <div class="comment">
+                            <span><i class="fa fa-comments"></i>نظری برای این مطلب بنویسید</span>
+                            <form action="" method="">
+                                <div class="form-group col-md-6">
+                                    <input class="form-control" type="text" name="user_name"
+                                           placeholder="نام خود را وارد کنید">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input class="form-control" type="email" name="user_email"
+                                           placeholder="ایمیل را واردکنید">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <textarea class="form-control" name="user_comment" placeholder="متن نظر"
+                                              rows="7"></textarea>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <button class="btn btn-default" type="submit">ارسال نظر</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="comments-note">
+                            نظرات این مطلب
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+{% endblock %}

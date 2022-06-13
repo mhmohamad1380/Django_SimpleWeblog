@@ -1,0 +1,48 @@
+{% load static %}
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="footer-contact">
+                    <span class="footer-title">چگونه با ما در تماس باشید</span>
+                    <ul>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3457.526759807011!2d52.88937711511256!3d29.935523481922083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2363ec76997cfee!2sPersepolis!5e0!3m2!1sen!2s!4v1625053621937!5m2!1sen!2s"
+                                width="100%" height="60%" style="border:0; border-radius: 10px;margin-top: 10px" allowfullscreen="" loading="lazy"></iframe>
+                        <br>
+                        <li><a href="tel:{{ footer.phone_number }}" title="{{ footer.phone_number }}"
+                               data-toggle="tooltip"><i class="fa fa-phone"></i></a></li>
+                        <li><a href="mailto:{{ footer.email }}" title="{{ footer.email }}" data-toggle="tooltip"><i
+                                class="fa fa-envelope-o"></i></a>
+                        </li>
+                        <li><a href="tel:{{ footer.mobile_number }}" title="{{ footer.mobile_number }}"
+                               data-toggle="tooltip"><i class="fa fa-mobile"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="footer-random-posts">
+                    <span class="footer-title">شاید این مطالب را بپسندید</span>
+                    {% for item in blogs %}
+                        {% for blog in item %}
+                            <div style="margin-top: 2px" class="col-md-6">
+                                <a href="{{ blog.get_absolute_url }}">
+                                    <div class="footer-random-posts-body">
+                                        <figure>
+                                            <img src="{{ blog.image.url }}" alt="">
+                                        </figure>
+                                        <h4>{{ blog.title }}</h4>
+                                        <span><i class="fa fa-calendar-o"></i>{{ blog.date }}</span>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <br><br><br>
+        <center>
+            <p>حقوق انتشار برای وب سایت محفوظ است. </p>
+        </center>
+    </div>
+</div>

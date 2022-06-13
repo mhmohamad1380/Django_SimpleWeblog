@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  db:
+    image: mariadb:latest
+    container_name: mariadb
+    restart: always
+    environment:
+     - MARIADB_PASSWORD=1234
+     - MARIADB_USER=postgresadmin
+     - MARIADB_DATABASE=postgresadmin
+     - MARIADB_ROOT_PASSWORD=1234
+    expose:
+      - "3306"
+    volumes:
+      - type: 'bind'
+        source: './db'
+        target: '/var/lib/mysql'
+  app:
+    container_name: django
+    depends_on:
+      - db
+    build: ./sourcecode
+    restart: always
+    ports:
+     - "80:8000"
+    volumes:
+      - type: 'bind'
+        source: './sourcecode'
+        target: '/app'
+      - ./staticfiles:/app/staticfiles
+      - ./mediafiles:/app/mediafiles
+    environment:
+     - MARIADB_PASSWORD=1234
+     - MARIADB_USER=postgresadmin
+     - MARIADB_DATABASE=postgresadmin
+     - MARIADB_HOST=db
+  
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    ports:
+     - 8080:80
+    depends_on:
+      - app
+    volumes:
+      - ./staticfiles:/app/staticfiles
+      - ./mediafiles:/app/mediafiles
+
+  

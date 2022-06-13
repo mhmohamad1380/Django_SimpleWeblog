@@ -1,0 +1,58 @@
+{% extends 'base/Main_Layout.html' %}
+{% load render_partial %}
+{% block title %}
+    صفحه اصلی
+{% endblock %}
+{% block content %}
+    <div class="top-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="img/logo.png" alt="" class="logo">
+                </div>
+                <div class="col-md-5">
+                    {% include 'blog_search.html' %}
+                </div>
+                <div class="col-md-5">
+                    <div class="index-h1">
+                        <h1>بهترین و متفاوت ترین مقالات خبری</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <center>
+        <p style="font-size: 16px;color: #444;">آخرین مطالب وبلاگ</p>
+    </center>
+    <hr>
+    <div class="container">
+        <div class="row">
+            {% render_partial 'sidebar' %}
+            <div class="col-md-9">
+                {% for blog in page_obj %}
+                    <div class="col-md-6">
+                        <a href="{{ blog.get_absolute_url }}">
+                            <div class="post-content">
+                                <figure>
+                                    <img src="{{ blog.image.url }}" alt="{{ blog.title }}" loading="lazy">
+                                    <figcaption class="hover-fig">
+                                        <i class="fa fa-book"></i>
+                                    </figcaption>
+                                    <figcaption class="date-fig">
+                                        <span>{{ blog.date }}</span>
+                                        <i class="fa fa-date"></i>
+                                    </figcaption>
+                                </figure>
+                                <h4 style="color: #1b1b1b">{{ blog.title }}</h4>
+                                <p>{{ blog.description|truncatechars:120 }}</p>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+{% endblock %}
