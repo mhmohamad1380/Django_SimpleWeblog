@@ -14,8 +14,8 @@ services:
       - type: 'bind'
         source: './sourcecode'
         target: '/app'
-      - ./staticfiles:/app/staticfiles
-      - ./mediafiles:/app/mediafiles
+      - ./sourcecode/static:/app/static
+      - ./sourcecode/media:/app/media
     environment:
      - MARIADB_PASSWORD=1234
      - MARIADB_USER=postgresadmin
@@ -44,7 +44,7 @@ services:
     ports:
      - 8080:80
     volumes:
-      - ./staticfiles:/app/staticfiles
-      - ./mediafiles:/app/mediafiles
+      - ./sourcecode/static:/app/static
+      - ./sourcecode/media:/app/media
 
   

@@ -20,21 +20,13 @@ class HomePage(ListView):
         return BlogContent.object.get_active_blogs().all()
 
 
-def BlogView(request):
+class BlogView(ListView):
+    context_object_name = "blogs"
+    paginate_by = 16
+    template_name = "blogs.html"
 
-    blogs = BlogContent.object.get_active_blogs().all()
-    page = request.GET.get('page', 1)
-    paginator = Paginator(blogs, 16)
-    try:
-        pages = paginator.page(page)
-    except PageNotAnInteger:
-        pages = paginator.page(1)
-    except EmptyPage:
-        pages = paginator.page(paginator.num_pages)
-    context = {
-        'blogs': pages,
-    }
-    return render(request, 'blogs.html', context)
+    def get_queryset(self):
+        return BlogContent.object.get_active_blogs().all()
 
 
 def Footer(request):
