@@ -1,15 +1,11 @@
 import itertools
 
-from django import views
 from django.shortcuts import render
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-
+from rest_framework.generics import ListAPIView
 # Create your views here.
 from django.views.generic import ListView
-
+from .serializer import BlogSerializer
 from Weblog_Blog.models import BlogContent, FooterInfo
-import sys
-import urllib
 
 
 class HomePage(ListView):
@@ -78,3 +74,9 @@ class BlogSearch(ListView):
 
 def handler_404(request, exception):
     return render(request, 'base/404.html', {})
+
+
+class BlogApiView(ListAPIView):
+    serializer_class = BlogSerializer
+    queryset = BlogContent.object.all()
+    

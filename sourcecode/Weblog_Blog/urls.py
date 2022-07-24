@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
-
+from .views import BlogApiView
 from weblog.views import sidebar
 from Weblog_Blog.views import blog_detail, HomePage, BlogSearch, Footer, BlogView
 
@@ -12,6 +12,7 @@ urlpatterns = [
     path('blogs/<blogID>/<blogTitle>', blog_detail),
     path('blog/<category>', sidebar),
     path('search', BlogSearch.as_view()),
+    path("api/blog/list", BlogApiView.as_view())
 ]
 
 
