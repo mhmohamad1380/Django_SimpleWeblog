@@ -19,5 +19,4 @@ C:/example_folder/Django_SimpleWeblog/docker-compose up --build
 ### Note
 If You wanna see the deployed Project. Click on link below:
 <a>https://weblog-django.herokuapp.com/<a/>
-### Authentication Data is username:mohammad password:Ab1234
 
